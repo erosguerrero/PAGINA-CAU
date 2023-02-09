@@ -1,0 +1,68 @@
+<!-- importante: para saber qué modal teine que abrir (de qué aviso) y sacar los datos correctos
+ hay que poner id="verAvisoModal<!%= aviso.idAviso %>" para que distinga los distintos modales -->
+<div class="modal fade" id="asignarModal<%= aviso.idAviso %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- escribir categroia-->
+                <% if(aviso.categoria=='I' ){ categor='Incidencia' } else if(aviso.categoria=='S' ) {
+                    categor='Sugerencia' }else categor='Felicitación' ;%>
+
+                    <!-- escribir perfil-->
+                    <% if(aviso.perfilUser=='PAS' ){ perfil='• Personal de Administración y Servicios (PAS)' } else
+                        if(aviso.perfilUser=='PDI' ) { perfil='Personal Docente e Investigador (PDI)' } else
+                        if(aviso.perfilUser=='AA' ) { perfil='Antiguo alumno' }else perfil='Alumno' ;%>
+
+                        <h5 class="modal-title" id="verAvisoModal">Aviso <%- aviso.idAviso %> : <%- categor %>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+            </div>
+            <div class="modal-body">
+
+                <p>Usuario: <%- aviso.nombreUser %>
+                </p>
+                <p>Fecha: <%- aviso.fecha %>
+                </p>
+                <p>Comunicaciones: <%- aviso.tipo %>
+                </p>
+                <p>Perfil: <%- perfil %>
+                </p>
+                <label for="ob">Observaciones:</label>
+                <br>
+                <textarea rows="4" cols="50" id="ob" disabled><%- aviso.texto %></textarea>
+                <br>
+                <label for="com">Técnico asignado:</label>
+                <br>
+                <form action="/asignarTecnico" method="POST">
+                <% if (aviso.idTecnico==undefined || aviso.idTecnico=='0' ||aviso.idTecnico==null) { %>
+                    <select onchange="seleccionarTecnico('<%= aviso.idAviso %>')" id="tecnico<%= aviso.idAviso %>" class="form-select form-select-sm form-control" name="tecnico" required>
+                        <option hidden value="" >Seleccione un tecnico</option>
+                        <% tecnicosList.forEach(function(t) { %>
+                            <option value=<%-t.idUser %>><%-t.nombre %></option>
+                        <% }) %> 
+                    </select>
+                 
+                <% }%>
+                
+                <input type="hidden" name= "idAviso" id="idAviso" value="<%- aviso.idAviso %>">
+                <button class="mt-2 btn2" id="asignacion<%= aviso.idAviso %>" type="submit" name="register" disabled>Asignar técnico</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function seleccionarTecnico(aviso){
+        let seleccion = document.getElementById("tecnico"+aviso).value;
+        let boton = document.getElementById("asignacion"+aviso);
+        if(seleccion ==''){
+            boton.setAttribute('disabled','disabled');
+           
+        }else{
+            boton.removeAttribute('disabled');
+        }
+    }
+</script>

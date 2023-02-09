@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PV1</title>
+    <!-- Por Eros Guerrero Sosa y Cristina Díez Sobrino-->
+    <link rel="stylesheet" href="css/tasksScreen.css" />
+    <link rel="stylesheet" media="print" href="css/tasksPrint.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favi.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" herf="http.//fonts.googleapis.com/css" family="Helvetica" />
+</head>
+
+<body>
+    <div class="container-sm">
+        <div id="header" class="row align-items-start justify-content-between">
+            <div class="col-md-auto">
+                <div id="brand" class="align-items-center">
+                    <img id="logo" src="/img/favi.png" />
+                    <h1>NombreApp</h1>
+                </div>
+            </div>
+
+            <div class="col-md-auto">
+                <div class="row align-items-center">
+                    <div class="col col-6">
+                        <img id="userImage" src="/imagenUsuario" />
+                    </div>
+                    <div class="col col-6">
+                        <p><%= respuesta.userEmail %></p>
+                        <form method="GET" action="/logout">
+                            <button id="desc" class="btn btn-secondary">Desconectar</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 id="titutlo_print">tareas</h1>
+
+        <div id="tareas">
+            <ul>
+                <% taskList.forEach(function(t){ %>
+                    <%- include("task",{task: t}) %>
+                        <% }) %>
+            </ul>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <form method="POST" action="deleteTask" >
+                <button type="submit" id="eliminarButton"  onclick="confirmar(event)" class="btn btn-danger">
+                    Eliminar Tareas
+                </button>
+            </form>
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                    Añadir nueva
+                </button>
+        </div>
+        <%- include("addTaskModal") %>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        <script>
+            function confirmar(e) {
+                if (!confirm('¿Seguro que desea eliminar todas las tareas completadas?')) {
+                    e.preventDefault();
+                }
+            }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "pract_vol_3",
+  "version": "1.0.0",
+  "description": "Practica voluntaria 3 Eros Guerrero y Cristina Diez",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "keywords": [
+    "ucm",
+    "fdi",
+    "aw",
+    "node",
+    "proyecto",
+    "prueba"
+  ],
+  "author": "Eros Guerrero y Cristina Diez",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

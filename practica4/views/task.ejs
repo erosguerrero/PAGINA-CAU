@@ -1,0 +1,22 @@
+  
+ 
+<li class=" todo flex-wrap justify-content-between ">
+    <% if( task.done == "1" ){  %>
+    <p class = "finishedTask"><%= task.id + " " +task.text %>
+        <% task.tags.forEach(function(tag) { %>
+            <span class="badge badge-primary"><%=tag%></span> 
+        <% }); %>
+    </p>
+    
+    <%} else if(task.done == 0) { %> 
+        <p ><%= task.id + " " +task.text %>
+            <% task.tags.forEach(function(tag) { %>
+                <span class="badge badge-primary"><%=tag%></span> 
+            <% }); %>
+        </p>
+        <form method="POST" action="endTask/<%= task.id %>">
+            <input type="hidden" name="taskId" id="taskId" value=<%= task.id %> ></input>
+            <button type="submit" class="btn btn-outline-success">Finalizar</button>
+        </form>
+    <%} %>
+</li>

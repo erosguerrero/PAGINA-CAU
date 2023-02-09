@@ -1,0 +1,56 @@
+<!-- importante: para saber qué modal teine que abrir (de qué aviso) y sacar los datos correctos
+ hay que poner id="verAvisoModal<!%= aviso.idAviso %>" para que distinga los distintos modales -->
+<div class="modal fade" id="verAvisoModal<%= aviso.idAviso %>" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- escribir categroia-->
+        <% if(aviso.categoria=='I' ){ categor='Incidencia' } else if(aviso.categoria=='S' ) { categor='Sugerencia' }else
+          categor='Felicitación' ;%>
+
+          <!-- escribir perfil-->
+          <% if(aviso.perfilUser=='PAS' ){ perfil='• Personal de Administración y Servicios (PAS)' } else
+            if(aviso.perfilUser=='PDI' ) { perfil='Personal Docente e Investigador (PDI)' } else
+            if(aviso.perfilUser=='AA' ) { perfil='Antiguo alumno' }else perfil='Alumno' ;%>
+
+            <h5 class="modal-title" id="verAvisoModal">Aviso <%- aviso.idAviso %> : <%- categor %>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+
+        <p>Usuario: <%- aviso.nombreUser %>
+        </p>
+        <p>Fecha: <%- aviso.fecha %>
+        </p>
+        <p>Comunicaciones: <%- aviso.tipo %>
+        </p>
+        <p>Perfil: <%- perfil %>
+        </p>
+        <label for="ob">Observaciones:</label>
+        <br>
+        <textarea rows="4" cols="50" id="ob" disabled><%- aviso.texto %></textarea>
+        <br>
+
+        <% if (historico!='1') {%> 
+        <form method="POST" action="/terminarAviso">
+          <label for="com">Comentarios del técnico:</label>
+          <br>
+          <textarea rows="4" cols="50" id="comentario" name="comentario"><%- aviso.comentarios %></textarea>
+
+          <input type="hidden" name="idAviso" value="<%- aviso.idAviso%>">
+          <button type="submit" class="btn2 mt-2">Terminar aviso</button>
+        </form>
+        <% } else {%> 
+          <label for="com">Comentarios del técnico:</label>
+          <br>
+          <textarea rows="4" cols="50" id="comentario" name="comentario" disabled><%- aviso.comentarios %></textarea>
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+</div>

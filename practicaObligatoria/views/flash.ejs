@@ -1,0 +1,6 @@
+<%  let errorMsg = getAndClearFlash(); 
+    if(errorMsg) { %>
+        <div class="w-50 mx-auto alert alert-danger text-center" role="alert">
+            <%= errorMsg %>
+        </div>
+    <% } %>

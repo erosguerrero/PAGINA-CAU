@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PV Obligatoria</title>
+    <!-- Por Eros Guerrero Sosa y Cristina Díez Sobrino-->
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favi.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" herf="http.//fonts.googleapis.com/css" family="Helvetica" />
+</head>
+
+<body>
+
+    <%- include("header") %>
+
+        <div class="fondo">
+            <div class="divAncho sombra">
+                <div class="cabeceraTabla">
+                    <table>
+                        <thead>
+                            <tr class="cabecTablaColor">
+                                <th scope="col" class="col-2 cabTablaTitulo">Fecha</th>
+                                <th scope="col" class="col-2 cabTablaTitulo">Nombre</th>
+                                <th scope="col" class="col-2 cabTablaTitulo">Rol</th>
+                                <th scope="col" class="col-2 cabTablaTitulo">Acciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="contenidoTabla">
+                    <table id="tabla" class="table table-striped">
+                        <% usuariosList.forEach(function(u){ %>
+                            <tr>
+                                <td class="centrar col-1 ">
+                                    <%= u.fecha %>
+                                </td>
+                                <td class="col-1 centrar searchable searchableUser">
+                                    <%= u.nombre %>
+                                </td>
+                                <td class="col-1 centrar">
+                                    <%= u.perfil %>
+                                </td>
+                                <td class="col-1 centrar">
+                                    <form action="/borrarUser" method="POST"
+                                        onsubmit="return confirm('¿Está seguro que desea borrar el usuario '+'<%=u.nombre%>'+'?')">
+                                        <input type="hidden" name="idUser" value="<%=u.idUser%>">
+                                        <button type="submit" class="mt-2 btn1">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                </div>
+                </table>
+            </div>
+        </div>
+
+        <!-- TODO SCRIPTS EN PLANTILLA -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script>
+            //confirmar borrar usuario
+            function confirmar(usuario) {
+                return confirm("¿Está seguro que desea borrar el usuario " + usuario + "?");
+            }
+        </script>
+         <script>
+            $("#searchBar").on("keyup", function (event) { //En el evento de liberacion de tecla
+                let byUser = $("#SearchUserCheck").prop("checked");
+                let toFind = $("#searchBar").prop("value").toUpperCase() //modificamos una propiedad
+                
+                if(byUser){
+                    let poblation = $("td.searchableUser")  //Población para buscar (td con la clase buscables)
+                    for (let i = 0; i < poblation.length; i++) {
+                    let text = poblation.eq(i).text().toUpperCase() //Valor del campo texto
+                    if (text.indexOf(toFind) < 0) //Si no contiene la palabra buscada
+                        poblation.eq(i).parent().hide() //Ocultamos el elemento entero
+                    else
+                        poblation.eq(i).parent().show() //Lo mostramos (podría estar oculto de antes)
+                }
+                }else{
+                    let poblation = $("td.searchable")  //Población para buscar (td con la clase buscables)  
+                    for (let i = 0; i < poblation.length; i++) {
+                    let text = poblation.eq(i).text().toUpperCase() //Valor del campo texto
+                    if (text.indexOf(toFind) < 0) //Si no contiene la palabra buscada
+                        poblation.eq(i).parent().hide() //Ocultamos el elemento entero
+                    else
+                        poblation.eq(i).parent().show() //Lo mostramos (podría estar oculto de antes)
+                }
+                }
+                
+            })
+        </script>
+</body>
+
+</html>

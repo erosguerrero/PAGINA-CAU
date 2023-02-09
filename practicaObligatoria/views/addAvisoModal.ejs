@@ -1,0 +1,97 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enviar nuevo aviso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+                
+                <p>¿Qué tipo de aviso quiere enviar?</p>
+                <div class="col">
+                    <!-- dependiendo de cuál elija saldrán dos tipos distintos de formularios-->
+                    <select onchange="mostrarOcultar()" id="categoria"
+                        class="form-select form-select-sm form-control" name="categoria" required>
+                        <option hidden value="">Seleccionar tipo de aviso</option>
+                        <option value="S">Sugerencia</option>
+                        <option value="I">Incidencia</option>
+                        <option value="F">Felicitación</option>
+                    </select>
+                </div>
+                
+                  <!-- formulario en caso de ser una incidencia o sugerencia (I o S) -->
+                <div class="col" style="display:none" id="divTipos">
+                    <form method="POST" action="addAviso">
+                        <input type="hidden" id="categor1" name="categor">
+                        <% if(respuesta.userProfile =='A'){ %>
+                            <%- include("avisosAlumno") %>
+                        <% } else if(respuesta.userProfile =='PAS'){ %>
+                            <%- include("avisosPAS")%>
+                        <% } else if(respuesta.userProfile =='PDI'){ %>
+                            <%- include("avisosPDI")%>
+                        <% } else if(respuesta.userProfile =='AA'){ %>
+                            <%- include("avisosAA")%>
+                        <% } %>    
+                        <textarea id="texto" name="texto" class="mt-2 form-control" placeholder="Explique brevemente su aviso" rows="5"></textarea>
+                        <button type="submit" class="mt-2 btn2">Enviar</button>
+                    </form>
+                </div>
+                
+                <!-- formulario en caso de ser una felicitación (F) -->
+                <div class="col" style="display:none" id="divFeli">
+                    <form method="POST" action="addAviso">
+                        <input type="hidden" id="categor" name="categor" value="F">
+                    <select id="subtipo"
+                    class="mt-2 form-select form-select-sm form-control" name="subtipo" required>
+                    <option hidden value="">Seleccione el motivo de su felicitación</option>
+                        <option value="Archivo Universitario">Archivo Universitario</option>
+                        <option value="Asesoría Jurídica">Asesoría Jurídica</option>
+                        <option value="Biblioteca">Biblioteca </option>
+                        <option value="Centro de Información">Centro de Información</option>
+                        <option value="Departamentos docentes">Departamentos docentes</option>
+                        <option value="Inspección de Servicios">Inspección de Servicios</option>
+                        <option value="Oficina de Gestión de Infraestructuras y Mantenimiento">Oficina de Gestión de Infraestructuras y Mantenimiento</option>
+                        <option value="Servicio de Administración">Servicio de Administración</option>
+                        <option value="Servicios Informáticos">Servicios Informáticos</option>
+                        <option value="Servicio de Documentación">Servicio de Documentación</option>
+                        <option value="Servicio de Imprenta">Servicio de Imprenta</option>
+                        <option value="Servicio de Cafetería">Servicio de Cafetería</option>
+                        <option value="Toda la Universidad">Toda la Universidad</option>
+                    </select>
+                    <textarea id="texto2" name="texto" class="mt-2 form-control" placeholder="Explique brevemente su felicitación" rows="5"></textarea>
+                    <button type="submit" class="mt-2 btn2">Enviar</button>
+                    </form>
+                </div>
+
+              
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    //método para mostrar un formulario u otro dependiendo del aviso (categor1 es si es S o I, y categor si es F)
+    function mostrarOcultar() {
+        var categoria = document.getElementById("categoria");
+        var divTipos = document.getElementById("divTipos");
+        var divFeli = document.getElementById("divFeli");
+        var cat1 = document.getElementById("categor1");
+        
+        if (categoria.value == "S"  ) {
+            divTipos.style.display = "block";
+            divFeli.style.display = "none";
+            cat1.value="S";
+        }else if(categoria.value == "I"){
+            divTipos.style.display = "block";
+            divFeli.style.display = "none";
+            cat1.value="I";
+        } else {
+            divTipos.style.display = "none";
+            divFeli.style.display = "block";
+        }
+
+    }
+</script>
+  

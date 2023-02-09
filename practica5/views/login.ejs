@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PV1</title>
+    <!-- Por Eros Guerrero Sosa y Cristina Díez Sobrino-->
+    <link rel="stylesheet" href="css/tasksScreen.css" />
+    <link rel="stylesheet" media="print" href="css/tasksPrint.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favi.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" herf="http.//fonts.googleapis.com/css" family="Helvetica" />
+</head>
+
+<body>
+    <div class="container-sm">
+        <div id="header" class="row align-items-start justify-content-between">
+            <div class="col-md-auto">
+                <div id="brand" class="align-items-center">
+                    <img id="logo" src="/img/favi.png" />
+                    <h1>NombreApp</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="loginbox"">
+            <form method="POST" action="/login">
+                <div class="card form-login">
+                    <div class="card-body">
+                        <div class="row mb-3 form-floating mb-3">
+                        <input id="email" type="email" class="form-control" name="email"  required autocomplete="email" placeholder="Dirección de correo" autofocus>
+                        <label class="text-muted" for="email">Correo electrónico</label>
+                        </div>
+
+                        <div class="row mb-3 form-floating mb-3">
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required autocomplete="current-password">
+                            <label class="text-muted" for="password">Contraseña</label>
+                        </div>
+                        <div class="d-grid gap-2  justify-content-md-end">
+                            <div class="btn-group mt-5">
+                                <button type="submit" name="login" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </div>
+                        <p></p>
+                        <p></p>
+                    </div>
+                    </div>
+                </div>
+
+                <%  let errorMsg = getAndClearFlash(); 
+                if(errorMsg) { %>
+             
+                <p class=" text-danger text-center "><%= errorMsg %></p>
+                <% } %>  
+             
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

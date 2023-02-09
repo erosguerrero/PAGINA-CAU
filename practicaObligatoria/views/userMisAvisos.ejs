@@ -1,0 +1,53 @@
+<div>
+    <div class="cabeceraTabla">
+        <table>
+            <thead>
+                <tr class="cabecTablaColor">
+                    <th scope="col"  class=" cabTablaTitulo">Fecha</th>
+                    <th scope="col"  class=" cabTablaTitulo">Texto</th>
+                    <th scope="col" style="width: 10%;" class=" cabTablaTitulo">Tipo</th>
+                    <th scope="col" style="width: 13%;" class="cabTablaTitulo">Técnico</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="contenidoTabla">
+        <table id="tabla" class="table table-striped">
+        <% avisosList.forEach(function(a){ %>
+            <tr class="cursorMano" data-toggle="modal" data-target="#verAvisoModal<%= a.idAviso %>">                   
+                <%- include("verAvisoModal", aviso=a , historico="1" , aviso.nombreUser =respuesta.userName) %> <!--OJO! paso historico=1 para que
+                     no me muestre el botón de terminar (como pasa en el historico, que no se muestra,
+                      es para reutilizar la variable) -->
+                <td style="width: 10%;">
+                    <%= a.fecha %>
+                </td>
+                <% if(a.texto.length > 200){%>
+                    <td class="col-6 searchable texto ">
+                        <p name="texto"><%= a.texto.substr(0,200) + "..." %></p>
+                    </td >
+                    <% } else { %>
+                        <td style="width: 70%;" class=" searchable texto">
+                            <p name="texto"> <%= a.texto %></p>
+                        </td>
+                        <%} %>
+                            <td style="width: 10%;">
+                                <% if(a.categoria=="S" ){%>
+                                    <img src="/img/sugerencia.png">
+                                    <% } else if (a.categoria=="I" ) {%>
+                                        <img src="/img/incidencia.png">
+                                        <% } else { %>
+                                            <img src="/img/felicitacion.png">
+                                            <%} %>
+                            </td>
+                            <td style="width: 20%;" >
+                                <%= a.tecnico %>
+                            </td>
+
+            </tr>
+            <% }) %>
+    </div>
+    </table>
+    <button class="sombra" type="button" id="newAviso" data-toggle="modal" data-target="#exampleModal"><i
+            class="fa fa-plus"></i>&nbsp;&nbsp; Nuevo aviso </button>
+    <%- include("addAvisoModal") %>
+</div>

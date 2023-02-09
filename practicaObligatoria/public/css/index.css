@@ -1,0 +1,244 @@
+:root {
+	--colorPrincipal: rgb(120, 30, 30);
+	--colorSecundario: rgb(73, 17, 17);
+	--colorBoton:rgb(244, 193, 6) ;
+	--colorBotonOscuro:rgb(199, 157, 5) ;
+  }
+
+  
+body{
+	overflow-x: hidden;
+}
+
+#userImage {
+    height: 6rem; 
+    width: 6rem;
+	float: right;
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#desc{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+	background-color:grey;
+	color:  white;
+	border-radius: 20px;
+}
+
+
+#brand{
+    display: flex;
+}
+
+.texto{
+	word-break: break-all;
+	max-width: 600px;
+	width: 500px;
+}
+
+#header{
+	padding: 1rem 2rem;
+	top: 0;
+	background-color: var(--colorPrincipal);
+	color: white;
+}
+
+.cursorMano{
+	cursor:pointer;
+	cursor: hand;
+}
+
+/*Cada fila con las tareas*/
+.todo{
+	display: flex;
+	padding: 15px;
+    margin: 5px 0;
+    border-radius: 0;
+    background: #f7f7f7
+}
+
+#logo{
+	margin-left: 32px;
+	height: 6rem;
+}
+
+
+.badge{
+	background-color: rgb(74, 118, 201);
+	margin: 5px;
+}
+
+.fondo{
+	background-color: rgba(128, 128, 128, 0.15);
+	padding: 2rem;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.divAncho{
+	width: 95%;
+	border-radius: 18px;
+	height: 70%;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+.cabeceraTabla{
+	width: 100%;
+	position: sticky;
+}
+
+
+.cabecTablaColor{
+	background-color: var(--colorPrincipal);
+	color: white;
+}
+
+.cabTablaTitulo{
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.centrar{
+	padding-left: 40px !important;
+}
+
+.contenidoTabla{
+	height: 500px !important;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: white;
+}
+
+tr{
+	height: 50px;
+}
+
+.nav-link:hover{
+	border-bottom: 3px solid var(--colorPrincipal);
+	color: var(--colorPrincipal) !important;
+}
+
+.nav-link{
+	border-bottom: 3px solid white;
+}
+
+.sombra{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.finishedTask{
+	text-decoration: line-through
+}
+/*Div contenedor de las tareas*/
+#tareas{
+	padding-left: 0px !important;
+}
+
+#eliminarButton{
+	margin-left: 32px;
+}
+
+
+#perfil {
+    color: rgb(114, 114, 114);
+}
+
+.serarchDerecha {
+    display: flex;
+    padding-left: 0 !important;
+}
+
+.btnPrincipal{
+	background-color: var(--colorPrincipal);
+	border-radius: 4px;
+	color: white;
+	border:none;
+	width: 40px;
+}
+#newAviso{
+		position: fixed; /* Fixed/sticky position */
+		bottom: 20px; /* Place the button at the bottom of the page */
+		right: 30px; /* Place the button 30px from the right */
+		z-index: 99; /* Make sure it does not overlap */
+		border: none; /* Remove borders */
+		outline: none; /* Remove outline */
+		background-color: var(--colorPrincipal); /* Set a background color */
+		color: white; /* Text color */
+		cursor: pointer; /* Add a mouse pointer on hover */
+		padding: 15px; /* Some padding */
+		border-radius: 10px; /* Rounded corners */
+		font-size: 18px; /* Increase font size */
+}
+
+#newAviso:hover {
+	background-color: var(--colorSecundario);  /* Add a dark-grey background on hover */
+  }
+
+#searchBar{
+width: 200px;
+height: 40px;
+display: inline-block;
+background-color: transparent;
+border: 2px solid var(--colorPrincipal);
+border-radius: 4px;
+box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#searchBar:focus{
+    background-color: rgba(157, 157, 157, 0.2);
+    box-shadow: none;
+    outline: none;
+}
+
+.btn1{
+ background-color: var(--colorPrincipal);
+ border-radius: 20px;
+ color: white;
+ border: 1px solid  var(--colorPrincipal);
+ box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn1:hover{
+	background-color: var(--colorSecundario);
+   }
+
+.btn2{
+ background-color: var(--colorBoton);
+ border-radius: 20px;
+ color: black;
+ border: 1px solid var(--colorBoton);
+ box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn2:hover{
+	background-color: var(--colorBotonOscuro);
+}
+
+.btn2:disabled{
+	background-color: lightgray;
+	border-radius: 20px;
+	color: grey;
+	border: none;
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btn1:disabled{
+	background-color: lightgray;
+	border-radius: 20px;
+	color: grey;
+	border: none;
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btndisabled{
+	background-color: lightgray;
+	border-radius: 20px;
+	color: grey;
+	border: none;
+   }

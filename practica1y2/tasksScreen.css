@@ -1,0 +1,60 @@
+
+
+#brand{
+    display: flex;
+}
+
+#header{
+	position: sticky;
+	top: 0;
+	background-color: white;
+	border-radius: 30px;
+}
+
+/*Cada fila con las tareas*/
+.todo{
+	display: flex;
+	padding: 15px;
+    margin: 5px 0;
+    border-radius: 0;
+    background: #f7f7f7
+}
+
+#logo{
+	margin-left: 32px;
+}
+
+#userImage{
+   float: right;
+    width:70%;
+}
+
+.badge{
+	background-color: rgb(74, 118, 201);
+	margin: 5px;
+}
+
+.finishedTask{
+	text-decoration: line-through;
+	
+}
+/*Div contenedor de las tareas*/
+#tareas{
+		padding-left: 0px !important;
+}
+
+#eliminarButton{
+	margin-left: 32px;
+}
+
+/* Cause print need to hide */
+#titutlo_print{
+	display: none;
+}
+
+#print{
+	display: none;
+}
+
+
+

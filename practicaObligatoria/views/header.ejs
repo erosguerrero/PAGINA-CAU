@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<div id="header" class="row align-items-start justify-content-between">
+    <div class="col-md-auto">
+        <div id="brand" class="align-items-center">
+            <img id="logo" src="/img/favi.png" />
+            <h3>UCM-CAU</h3>
+            <p class="mb-0"> &nbsp Centro de Atención a Usuarios</p>
+        </div>
+    </div>
+
+    <div class="col-md-auto">
+        <div class="row align-items-center">
+            <div class="col col-6">
+                <img id="userImage" class="rounded-circle shadow-4-strong mt-1 cursorMano" data-toggle="modal"
+                    data-target="#profileModal" src="/imagen/<%= respuesta.userEmail %>" />
+            </div>
+            <div class="col col-6">
+                <p class="link-light cursorMano" data-toggle="modal" data-target="#profileModal">
+                    <%= respuesta.userEmail %>
+                </p>
+                <form method="GET" action="/logout">
+                    <button id="desc" class="btn btn-secondary">Desconectar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <%- include("userProfile") %>
+</div>
+<%- include("navbar") %>

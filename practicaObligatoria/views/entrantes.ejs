@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PV Obligatoria</title>
+    <!-- Por Eros Guerrero Sosa y Cristina Díez Sobrino-->
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favi.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" herf="http.//fonts.googleapis.com/css" family="Helvetica" />
+</head>
+
+<body>
+
+    <%- include("header") %>
+
+    <div class="fondo">
+        <div class="divAncho sombra">
+            <div class="cabeceraTabla">
+        <table >
+            <thead>
+                <tr class="cabecTablaColor">
+                    <th scope="col" class="col-2 cabTablaTitulo">Tipo</th>
+                    <th scope="col" class="col-2 cabTablaTitulo">Fecha</th>
+                    <th scope="col" class="col-4 cabTablaTitulo">Texto</th>
+                    <th scope="col" class="col-2 cabTablaTitulo">Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="contenidoTabla">
+        <table id="tabla" class="table table-striped">
+            <% avisosList.forEach(function(a){ %>
+                <tr>
+                    <td class="col-2 centrar">
+                        <% if(a.categoria=="S" ){%>
+                            <img src="/img/sugerencia.png">
+                            <% } else if (a.categoria=="I" ) {%>
+                                <img src="/img/incidencia.png">
+                                <% } else { %>
+                                    <img src="/img/felicitacion.png">
+                                    <%} %>
+                    </td>
+                    <td class="col-2 centrar">
+                        <%= a.fecha %>
+                    </td>
+                    <td class="col-4 centrar searchable texto">
+                        <p name="texto">
+                            <%= a.texto %>
+                        </p>
+                    </td>
+                    <td class="col-2 centrar">
+
+                        <!-- importante: para saber qué modal teine que abrir (de qué aviso) y sacar los datos correctos
+                    hay que poner data-target="#verAvisoModal<!%= a.idAviso %>" para que distinga los distintos modales -->
+                    <button class="btn1" type="button" data-toggle="modal" data-target="#eliminarAvisoModal<%= a.idAviso %>">Eliminar</button> 
+                    <%- include("eliminarAvisoModal", aviso = a) %>
+
+                        <% if (aviso.idTecnico==undefined || aviso.idTecnico=='0' ||aviso.idTecnico==null) { %>
+                            <button class="btn2" type="button" data-toggle="modal"
+                            data-target="#asignarModal<%= a.idAviso %>">Asignar técnico</button>
+                            <%- include("asignarModal", aviso=a, tecnicosList) %>
+                            <%}else{%>
+                                <button class="btndisabled" type="button" disabled>Técnico asignado</button>
+                            <% }%>
+                       
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+            $("#searchBar").on("keyup", function (event) { //En el evento de liberacion de tecla
+                let toFind = $("#searchBar").prop("value").toUpperCase() //modificamos una propiedad
+                let poblation = $("td.searchable")  //Población para buscar (td con la clase buscables)
+                for (let i = 0; i < poblation.length; i++) {
+                    let text = poblation.eq(i).text().toUpperCase() //Valor del campo texto
+                    if (text.indexOf(toFind) < 0) //Si no contiene la palabra buscada
+                        poblation.eq(i).parent().hide() //Ocultamos el elemento entero
+                    else
+                        poblation.eq(i).parent().show() //Lo mostramos (podría estar oculto de antes)
+                }
+            })
+    </script>
+   <script>
+    function puntosSuspensivos(contenido, maxLength) {
+        if (contenido.length > maxLength) {
+            
+            contenido = contenido.substr(0,maxLength) + '...';
+        }
+       return contenido;
+    }
+    var parrafo = document.getElementsByName('texto') ;
+    var lista = Array.prototype.slice.call(parrafo);
+    lista.forEach((element) =>{
+        element.innerText = puntosSuspensivos(element.innerText,200)
+    });
+    </script>
+        
+
+</body>
+
+</html>

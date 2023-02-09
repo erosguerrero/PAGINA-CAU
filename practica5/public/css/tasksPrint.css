@@ -1,0 +1,61 @@
+body{
+    font-family: 'Helvetica', serif ;
+}
+
+h1{
+    font-size: 18px!important;
+}
+
+p{
+    font-size: 12px!important;
+    font-weight: bold;
+}
+
+span{
+    font-size: 12px!important;
+    color: black!important;
+    font-weight: normal!important;
+}
+
+#header{
+    display: none;
+}
+
+#titutlo_print{
+    display: inline;
+}
+
+.todo{
+	padding: 0px;
+    margin: 0px 0;
+    border-radius: 0;
+    background: #f7f7f7
+}
+
+li + .finishedTask{
+    
+    margin-left: 20px!important;
+}
+
+
+ul{
+    list-style: disc!important;
+}
+
+li{
+    margin: 0px;
+    display: list-item!important;
+}
+
+button{
+    display: none!important;
+}
+
+span:before  {
+	content: "( "
+}
+
+span:after  {
+	content: ") "
+}
+

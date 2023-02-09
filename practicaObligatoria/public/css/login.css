@@ -1,0 +1,166 @@
+:root {
+	--colorPrincipal: rgb(120, 30, 30);
+	--colorSecundario: rgb(73, 17, 17);
+	--colorBoton:rgb(244, 193, 6) ;
+  }
+
+.fondo{
+	background: linear-gradient( to top, var(--colorSecundario),var(--colorPrincipal));
+}
+
+#brand {
+	display: flex;
+}
+
+body{
+	margin-top:0% !important;
+}
+
+#header {
+	top: 0;
+	background-color: rgb(255, 255, 255);
+	border-radius: 30px;
+}
+
+/*Cada fila con las tareas*/
+.todo {
+	display: flex;
+	padding: 15px;
+	margin: 5px 0;
+	border-radius: 0;
+	background: #f7f7f7
+}
+
+#loginbox {
+	align-self: center;
+	margin-top: 5%;
+}
+
+#logo {
+	margin-left: 32px;
+}
+
+#userImage {
+	float: right;
+	width: 70%;
+}
+
+.badge {
+	background-color: rgb(74, 118, 201);
+	margin: 5px;
+}
+
+.finishedTask {
+	text-decoration: line-through
+}
+
+/*Div contenedor de las tareas*/
+#tareas {
+	padding-left: 0px !important;
+}
+
+#eliminarButton {
+	margin-left: 32px;
+}
+
+/* Cause print need to hide */
+#titutlo_print {
+	display: none;
+}
+
+#print {
+	display: none;
+}
+
+#perfil {
+	color: rgb(114, 114, 114);
+}
+
+.centrar {
+	text-align: center;
+}
+
+#registro {
+	padding-bottom: 5%;
+	margin-top: 2rem;
+}
+
+.card{
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.711) !important;
+}
+
+input{
+	background-color: rgba(255, 255, 255, 0.479) !important;
+	border: none !important;
+}
+
+select{
+	background-color: rgba(255, 255, 255, 0.479) !important;
+	border: none !important;
+}
+
+input::file-selector-button{
+	background-color: var(--colorPrincipal) !important ;
+	color: white !important;
+	border-radius: 10px;
+	border: none;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+	margin: 4px;
+}
+
+input::file-selector-button:hover{
+	cursor:pointer;
+	cursor: hand;
+}
+
+span{
+	color: rgb(85, 85, 85) !important;
+}
+
+input[type=file]{
+	width: 100%;
+	background-color: transparent!important;
+}
+
+.botonAmarillo{
+	color: black!important;
+	background-color: var(--colorBoton) !important;
+	border: none;
+}
+
+.trasparente{
+	background: none !important;
+	border: none;
+	color: white;
+	padding: 20px;
+	box-shadow: 0 0px 0px ;
+}
+
+
+button{
+	background-color: var(--colorPrincipal) !important ;
+	color: white !important;
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+strong{
+	color: var(--colorBoton);
+}
+
+a{
+	color: white !important;
+	font-size: large !important;
+}
+
+.subrayado:hover{
+	text-decoration: underline;
+}
+
+.abajo1{
+ padding-bottom: 2%;
+}
+
+.abajo2{
+	padding-bottom: 16%;
+   }

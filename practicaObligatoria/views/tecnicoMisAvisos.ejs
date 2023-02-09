@@ -1,0 +1,54 @@
+
+        <div class="cabeceraTabla">
+            <table>
+            <thead>
+                <tr class="cabecTablaColor">
+                    <th scope="col" class="col-1 cabTablaTitulo" >Tipo</th>
+                    <th scope="col" class="col-2 cabTablaTitulo">Fecha</th>
+                    <th scope="col" class="col-5 cabTablaTitulo">Texto</th>
+                    <th scope="col" class="col-1 cabTablaTitulo">Acciones</th>
+                </tr>
+            </thead>
+        </table>
+        </div>
+
+       
+        <div  class="contenidoTabla">
+            <table id="tabla" class="table table-striped">
+            <% avisosList.forEach(function(a){ %>
+                <tr>
+                    <td class="col-1 centrar">
+                        <% if(a.categoria=="S"){%>
+                            <img src="/img/sugerencia.png">
+                        <% } else if (a.categoria=="I") {%>
+                            <img src="/img/incidencia.png">
+                        <% } else { %>
+                            <img src="/img/felicitacion.png">
+                        <%} %>
+                    </td>
+                    <td class="col-1 centrar"><%= a.fecha %></td>
+                    <% if(a.texto.length > 200){%>
+                    <td class="col-6 searchable texto "><p name="texto"><%= a.texto.substr(0,200) + "..." %></p></td>
+                    <% } else { %>
+                        <td class="col-6 searchable texto "><p name="texto"><%= a.texto %></p></td>
+                    <%} %> 
+                    <td style="display: none;" class="searchableUser" ><%= a.nombreUser %></td>
+                    <td  class="col-1 centrar">
+                        
+                        <% if(historico=='1') {%> 
+                        <!-- importante: para saber qué modal teine que abrir (de qué aviso) y sacar los datos correctos
+                        hay que poner data-target="#verAvisoModal<!%= a.idAviso %>" para que distinga los distintos modales -->
+                        <button class="btn1" type="button" data-toggle="modal" data-target="#verAvisoModal<%= a.idAviso %>">Ver</button>  
+                        <%- include("verAvisoModal", aviso = a , historico) %>
+                        <% }else{ %> 
+                            <button class="btn1" type="button" data-toggle="modal" data-target="#verAvisoModal<%= a.idAviso %>">Ver</button>  
+                            <%- include("verAvisoModal", aviso = a) %>
+
+                            <button class="btn2" type="button" data-toggle="modal" data-target="#eliminarAvisoModal<%= a.idAviso %>">Eliminar</button> 
+                            <%- include("eliminarAvisoModal", aviso = a) %>
+                        <% } %> 
+                    </td>
+                </tr>
+            <% }) %>
+        </div>
+    </table>   
